@@ -1,0 +1,323 @@
+.nombre-precio-container, .barrio-compartir-container, .compartir-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.img-thumbnail-small {
+  width: 20%;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+.barra {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #000000;
+  
+}
+.img-thumbnail-small.active {
+  border: 2px solid #F2D8A7;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Asegura que la imagen se ajuste correctamente al contenedor */
+  padding: 0 10px; /* Añade un padding para un efecto de separación entre imágenes */
+}
+
+
+.card-custom {
+  width: 100%;
+  height: auto;
+}
+
+.custom-button {
+  background-color: transparent !important;
+  color: black !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.custom-button:hover {
+  background-color: transparent !important;
+}
+.btn-go-back {
+  background-color: transparent !important;
+  font-family:'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+.property-price {
+  justify-content: end;
+}
+
+.property-features, .property-info, .property-description {
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.address-title-details {
+  font-family: 'Montserrat', sans-serif;
+  font-size:24px;
+  font-weight: 500;
+}
+.price-details {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+.property-type-details {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+.property-detail h2 {
+  font-size: 1.5rem;
+}
+.video-wrapper-detail {
+  position: relative;
+  left: -80px;
+  width: 97vw;
+  height: 450px; /* Ajusta la altura del contenedor */
+  overflow: hidden; /* Oculta las partes que sobresalgan */
+}
+.image-wrapper-detail-container {
+  position: relative;
+  left: 50%; /* Centra el elemento horizontalmente */
+  transform: translateX(-50%); /* Ajusta la posición para que quede centrado */
+  width: calc(100vw - 17px); /* Resta 40px para considerar márgenes, ajusta según sea necesario */
+  height: 450px;
+  overflow: hidden;
+}
+.image-wrapper-detail {
+  position: relative;
+  left: 58%; /* Centra el elemento horizontalmente */
+  transform: translateX(-50%); /* Ajusta la posición para que quede centrado */
+  width: calc(97vw - 40px); /* Resta 40px para considerar márgenes, ajusta según sea necesario */
+  height: 450px;
+  overflow: hidden;
+}
+/* Asegura que no haya margen/padding debajo de la imagen */
+.dialog-image-container {
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0; /* Elimina cualquier padding */
+  margin: 0;  /* Elimina cualquier margen */
+  overflow: hidden; /* Asegúrate de ocultar cualquier desbordamiento */
+  
+
+}
+
+.dialog-image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 90vh; /* Asegura que la imagen no sobrepase la altura disponible */
+  object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
+  margin: 0; /* Elimina cualquier margen que pueda tener la imagen */
+  padding: 0; /* Elimina cualquier padding que pueda tener la imagen */
+}
+
+
+
+/* Asegúrate de que todas las imágenes dentro del Lightbox tengan el mismo tamaño */
+.react-spring-lightbox img {
+  width: 100%;
+  max-width: 90vw;  /* Ajusta el ancho máximo al viewport */
+  max-height: 80vh;  /* Ajusta la altura máxima al viewport */
+  height: auto;
+  object-fit: cover; /* Esto asegurará que las imágenes mantengan sus proporciones sin distorsionarse */
+  margin: 0 auto;
+  border-radius: 10px;  /* Bordes redondeados opcionales */
+  display: block;
+}
+.property-info {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.info-item-b {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+
+.info-item p {
+  margin: 0;
+}
+
+.info-item svg {
+  width: 50px;
+  height: 50px;
+}
+
+
+
+
+.encabezado h4 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.encabezado h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.raya {
+  color: black;
+  border: 1px solid black !important;
+}
+
+.mt {
+  font-size: 1.1rem;
+}
+
+.fa-icon {
+  font-size: 1.2rem;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.property-detail h5 {
+  font-size: 1.2rem;
+}
+
+
+
+
+.property-features, .property-info, .property-description {
+  margin-top: 20px;
+}
+
+
+
+.property-tags {
+  
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+.form-detail-container {          
+  margin-top: 20px; 
+}
+
+@media (max-width: 768px) {
+  .property-description {
+    order: 1; /* Mueve property-description al inicio en dispositivos móviles */
+  }
+
+  .property-tags {
+    order: 2; /* property-tags después de property-description */
+  }
+  .nombre-precio-container, .barrio-compartir-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .compartir-container {
+    justify-content: space-between;
+    margin-top: 10px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .property-price {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+
+  .property-address {
+    font-size: 1.5rem;
+  }
+
+  .property-type {
+    font-size: 1rem;
+  }
+
+  .icon {
+    font-size: 1.2rem;
+  }
+  .slick-list {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden; /* Elimina el scroll horizontal */
+    width: 100vw; /* Ancho completo */
+  }
+
+  .image-wrapper-detail-container{
+    width: 100vw !important; /* Ocupa el ancho completo */
+    height: 300px; /* Ajusta la altura como prefieras */
+    left: 0;
+    right: 0;
+    transform: none; /* Elimina cualquier desplazamiento */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .image-wrapper-detail {
+    width: 100vw !important; /* Ocupa el ancho completo */
+    height: 300px; /* Ajusta la altura como prefieras */
+    left: 0;
+    right: 0;
+    transform: none; /* Elimina cualquier desplazamiento */
+    margin: 0;
+  }
+
+  .main-image {
+    width: 100vw !important; /* Ancho completo de la pantalla */
+    height: 100%; /* Asegúrate de que ocupe toda la altura del contenedor */
+    object-fit: cover; /* Ajusta la imagen al contenedor */
+    margin: 0;
+    padding: 0;
+  }
+  .MuiPaper-root {
+    margin: 0 !important;
+  }
+  .dialog-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+    padding: 0; /* Elimina cualquier padding */
+    margin: 0;  /* Elimina cualquier margen */
+    overflow: hidden; /* Asegúrate de ocultar cualquier desbordamiento */
+  }
+  
+  .dialog-image-container img {
+    display: block;
+    width: 100vw !important;
+    height: 50vh !important; /* Ajusta la altura de la imagen */
+    max-height: 90vh; /* Asegura que la imagen no sobrepase la altura disponible */
+    object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
+    margin: 0; /* Elimina cualquier margen que pueda tener la imagen */
+    padding: 0; /* Elimina cualquier padding que pueda tener la imagen */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .image-wrapper-detail {
+    width: calc(97vw - 0px); /* Ajuste específico para tamaños de pantalla medianos */
+    height: 350px; /* Ajusta la altura según tus necesidades */
+  }
+  .image-wrapper-detail-container {
+    height: 350px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .image-wrapper-detail {
+    width: calc(97vw - 0px); /* Ajuste para pantallas grandes */
+    height: 61vh;
+  }
+  .image-wrapper-detail-container {
+    height: 61vh;
+  }
+}

@@ -1,0 +1,372 @@
+/* Franja negra en la parte superior */
+.menu-info {
+  width: 100%;
+  height: 32px;
+  background-color: #000;
+  color: #000;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20px;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Clase para ocultar el menu-info al hacer scroll */
+.menu-info.hidden {
+  transform: translateY(-100%); /* Oculta la franja de info */
+}
+.menu-info-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.menu-info-item {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  height: 100%;
+}
+.menu-info-item-phone {
+  font-size: 11px;
+  font-weight: 500;
+
+  min-width: none !important;
+  max-width: none !important;
+  padding-right: 5px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.menu-info-item-phone a {
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: none;
+  min-width: 0px !important;
+  max-width: none !important;
+  padding-right: 5px;
+  
+}
+.logo-ws {
+  padding: 2px;
+  margin-right: 6px;
+}
+
+
+
+.menu-info-item a:hover {
+  text-decoration: underline;
+}
+
+/* Menú general */
+.menu-container {
+  font-family: "Montserrat", sans-serif;
+  
+  font-size: 12px !important;
+  font-weight: 500;
+  color: #000000;
+  width: 100vw;
+  height: 65px;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
+  z-index: 10000000;
+  position: fixed;
+  top: 0; /* Ajustado para la franja */
+  left: 0;
+}
+
+.menu-container.sticky {
+  box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  color: #000000;
+
+  height: 65px;
+
+  top: 0;
+}
+
+.nav-flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.logo-img {
+  width: 80px;
+}
+
+.isobrand--img {
+  width: 50px;
+  height: 50px;
+  color: #C62025;
+}
+
+.menu-brand-wrapper {
+  width: 380px !important;
+  height: 65px;
+  display: flex;
+  max-width: none !important;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
+  cursor: pointer;
+}
+.menu-brand-wrapper.sticky {
+  height: 55px;
+}
+.menu-brand-wrapper:hover {
+  background-color: #F1B332;
+}
+.menu-nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.menu-nav .menu--link {
+  margin-right: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #000;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+ 
+
+.menu-container.sticky .menu-nav .menu--link,
+.menu-container.sticky .button--menu,
+.menu-nav .sticky-link {
+  color: #000000;
+}
+
+
+.button--menu {
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+/* Líneas debajo de los enlaces en el menú */
+.menu-nav .menu--link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #fff; /* Color predeterminado */
+  left: 37px;
+  bottom: 1px;
+  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.menu-container.sticky .menu-nav .menu--link::after,
+.menu-nav .menu--link.black-line::after {
+  background-color: #000; /* Cambia a negro en sticky o fuera del inicio */
+}
+
+.menu-nav .menu--link:hover::after {
+  width: 146px;
+}
+
+.button--menu:hover {
+  color: #000;
+  background-color: #C62025;
+  border-color: transparent;
+}
+
+/* Botón hamburguesa personalizado */
+.burger-button {
+  width: 65px;
+  height: 65px;
+  align-items: center;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  margin-right: 5px;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.icon-wrapper {
+  width: 30px;
+  height: 25px;
+  position: relative;
+}
+
+.burger-cross-custom .line {
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+}
+.burger-dark .line {
+  background-color: #333;
+}
+
+.burger-cross-custom .line:nth-child(1) {
+  top: 0;
+}
+
+.burger-cross-custom .line:nth-child(2) {
+  top: 11px;
+}
+
+.burger-cross-custom .line:nth-child(3) {
+  top: 22px;
+}
+
+.menu-container.sticky .burger-cross-custom .line,
+.menu-container.sticky .burger-button .line {
+  background-color: #333;
+}
+
+.burger-cross-custom.cross .line:nth-child(1) {
+  transform: rotate(45deg);
+  top: 11px;
+}
+
+.burger-cross-custom.cross .line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-cross-custom.cross .line:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 11px;
+}
+
+/* Menú desplegable */
+.burger-menu {
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  top: 65px;
+  right: 0;
+  background-color: #fff;
+  width: 100%;
+  max-width: 360px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease-in-out;
+  z-index: 9999999999;
+  box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.05);
+}
+
+.burger-menu.active {
+  max-height: 500px;
+}
+
+.burger-menu-list {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+
+
+
+.burger-menu-item a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.burger-menu-item a .link-text {
+  position: relative;
+  color: #000000;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 10px;
+  padding-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.burger-menu-item a .link-text::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #000000; /* Color de la línea */
+  left: 0;
+  bottom: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+.burger-menu-item a:hover .link-text::after {
+  width: 100%; /* Animación de la línea en hover */
+}
+
+.emp {
+  display: none;
+}
+/* Ajustes para pantallas pequeñas */
+
+
+@media screen and (max-width: 999px) {
+  
+  .menu-brand-wrapper.sticky {
+    height: 55px;
+    position: relative;
+    top: -5px;
+  }
+  .emp {
+    display: block;
+  }
+  .menu-info {
+    display: none;
+  }
+  .menu-container {
+    top: 0;
+  }
+  .menu-nav {
+    display: none;
+  }
+
+  .nav-flex-container {
+    padding: 0 15px;
+  }
+
+  .menu-brand-wrapper {
+    margin-left: 0;
+  }
+
+  .logo-img {
+    width: 60px;
+  }
+
+  .burger-menu {
+    width: 100%;
+    max-width: none;
+  }
+
+  .burger-cross-custom .line {
+    background-color: #000;
+    display: block;
+  }
+  .burger-dark .line {
+    background-color: #333;
+  }
+  
+}

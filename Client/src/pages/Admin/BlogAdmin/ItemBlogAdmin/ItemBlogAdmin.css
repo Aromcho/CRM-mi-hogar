@@ -1,0 +1,139 @@
+/* ItemBlogAdmin.css */
+
+.custom-card {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #000000;
+  transition: box-shadow 0.3s ease;
+  border-radius: 0;
+  overflow: hidden; /* Evita el desbordamiento del contenido */
+}
+  
+  .custom-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image-overlay-container {
+    position: relative;
+  }
+  
+  .custom-card-img {
+    height: 280px; /* Ajustar el tamaño de la imagen */
+    object-fit: cover; /* Para que la imagen se ajuste sin distorsionarse */
+    border-radius: 0;
+    display: block;
+  }
+  
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 35%, rgba(0, 0, 0, 0) 100%); /* Gradiente de abajo hacia arriba */
+    border-radius: 0;
+  }
+  
+  .text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .title {
+    margin: 0;
+    font-size: 20px;
+    text-transform: none;
+    white-space: normal; /* Permite que el texto se ajuste a la siguiente línea */
+    word-wrap: break-word; /* Hace que las palabras largas se ajusten dentro del contenedor */
+    overflow-wrap: break-word; /* Alternativa para navegadores más recientes */
+    text-align: left;
+    }
+  
+  .date-card {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+
+  }
+  
+  .custom-card-body {
+    text-align: center;
+  }
+  
+  .custom-button-group .btn-custom {
+    width: 100%; /* Ajustar el tamaño de los botones */
+    height: 100%;
+    font-size: 14px;
+    border-radius: 0;
+  }
+  
+  .custom-button-group .btn-custom:not(:last-child) {
+    margin-right: 5px; /* Espaciado entre los botones */
+  }
+  @media (max-width: 768px) {
+    .custom-card {
+    }
+
+    .custom-card-img {
+      height: 200px;
+    }
+
+    .text-overlay {
+      padding: 7px;
+    }
+
+    .title {
+      font-size: 18px;
+    }
+
+    .date-card {
+      font-size: 10px;
+    }
+
+    .custom-button-group .btn-custom {
+      font-size: 12px;
+    }
+
+    .custom-button-group .btn-custom:not(:last-child) {
+      margin-right: 3px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .custom-card-img {
+      height: 150px;
+    }
+
+    .title {
+      width: 80%;
+      font-size: 12px;
+    }
+
+    .date {
+      font-size: 6px;
+    }
+
+    .custom-button-group .btn-custom {
+      font-size: 6px;
+    }
+
+    .custom-button-group .btn-custom:not(:last-child) {
+      margin-right: 2px;
+    }
+    
+    .custom-card-body {
+      padding: 7px;
+    }
+    
+  }
