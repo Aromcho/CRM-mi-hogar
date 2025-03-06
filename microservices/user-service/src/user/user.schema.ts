@@ -1,30 +1,25 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
 
 export enum UserRole {
     ADMIN = 'admin',
     AGENT = 'agent',
     USER = 'user',
 }
-// "address" "logo" "name"
-
-
-
-
 
 @Schema()
 export class User extends Document {
     @Prop()
     address: string;
 
-    @Prop()
+    @Prop({ unique: true }) 
     id: number;
 
-    @Prop()
+    @Prop({ unique: true })
     email: string;
 
     @Prop()
-    logo: string
+    logo: string;
 
     @Prop()
     name: string;
@@ -34,6 +29,9 @@ export class User extends Document {
 
     @Prop()
     role: UserRole;
+
+    @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Branch', required: false })
+    branchId?: string; 
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -115,28 +115,6 @@ divisions: Division[];
   weight: number;
 }
 
-@Schema()
-class Branch {
-  @Prop()
-  address: string;
-
-  @Prop()
-  email: string;
-
-  @Prop()
-  id: number;
-
-  @Prop()
-  logo: string;
-
-  @Prop()
-  name: string;
-
-  @Prop()
-  phone: string;
-}
-
-export const BranchSchema = SchemaFactory.createForClass(Branch);
 
 @Schema()
 class Producer {
@@ -215,11 +193,21 @@ export class Property extends Document {
   @Prop({ type: Number, index: true })
   bathroom_amount: number;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'users', required: true, index: true })
-  user_id: string;
+  @Prop({
+    type: MongooseSchema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+    index: true,
+  })
+  agentId: string; // Agente que publicó la propiedad
 
-  @Prop({ type: BranchSchema }) 
-  branch: Branch;
+  @Prop({
+    type: MongooseSchema.Types.ObjectId,
+    ref: 'Branch',
+    required: false,
+    index: true,
+  })
+  branchId?: string; // Inmobiliaria a la que pertenece (opcional)
 
   @Prop()
   created_at: Date;
@@ -255,13 +243,13 @@ export class Property extends Document {
   expenses: number;
 
   @Prop({ type: [ExtraAttributeSchema] })
-extra_attributes: ExtraAttribute[];
+  extra_attributes: ExtraAttribute[];
 
   @Prop()
   fake_address: string;
 
   @Prop({ type: [FileSchema] })
-files: File[];
+  files: File[];
 
   @Prop()
   floors_amount: number;
@@ -311,7 +299,7 @@ files: File[];
   @Prop({ type: [Photo] })
   photos: Photo[];
 
-  @Prop({ type: ProducerSchema }) 
+  @Prop({ type: ProducerSchema })
   producer: Producer;
 
   @Prop({ type: String, text: true })

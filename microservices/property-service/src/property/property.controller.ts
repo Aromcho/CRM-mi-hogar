@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, Req, Query, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, Req, Query, HttpException, HttpStatus, ParseIntPipe } from '@nestjs/common';
 import { PropertyService } from './property.service';
 
 @Controller('properties')
@@ -18,15 +18,15 @@ export class PropertyController {
   findAll() {
     return this.propertyService.findAll();
   }
-
   @Get('by-branch/:id')
   findByBranchId(
-    @Param('id') id: number,
-    @Query('page') page: number = 1,
-    @Query('limit') limit: number = 10,
+    @Param('id', ParseIntPipe) id: number,  // ✅ Se convierte automáticamente a `number`
+    @Query('page', ParseIntPipe) page = 1,  // ✅ También convertimos `page` automáticamente
+    @Query('limit', ParseIntPipe) limit = 10, // ✅ `limit` también se convierte automáticamente
   ) {
     return this.propertyService.findByBranchId(id, page, limit);
   }
+  
 
   @Get(':id')
   findOne(@Param('id') id: string) {
