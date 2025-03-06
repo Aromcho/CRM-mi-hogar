@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
-import Home from "./pages/Home/Home.jsx";
 import Menu from "./components/Menu/Menu.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer.jsx";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer.jsx";
-import BusquedasGuardadas from "./pages/BusquedasGuardadas/BusquedasGuardadas.jsx";
-import ConoceBelga from "./pages/ConoceBelga/ConoceBelga.jsx";
 import Emprendimientos from "./pages/Emprendimientos/Emprendimientos.jsx";
-import Favorites from "./pages/Favorites/Favorites.jsx";
 import Publicar from "./pages/Publicar/Publicar.jsx";
 import TerminosYCondiciones from "./pages/Terminos/TerminosYCondiciones.jsx";
 import Error404 from "./pages/404/404.jsx";
@@ -59,10 +55,6 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/venta/:tipo" element={<ItemListContainer />} />
             <Route path="*" element={<Navigate to="/404" />} />
-            <Route path="/conoce-belga" element={<ConoceBelga />} />
-            <Route path="/terminos-y-condiciones" element={<TerminosYCondiciones />} />
-            <Route path="/busquedas-guardadas" element={<BusquedasGuardadas />} />
-            <Route path="/favorites" element={<Favorites />} />  
           </Routes>
         </Layout>
         <Footer />

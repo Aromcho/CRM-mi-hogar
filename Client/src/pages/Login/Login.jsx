@@ -35,11 +35,6 @@ const Login = () => {
         }
     };
 
-    /**
-     * 🟢 Iniciar sesión con Google automáticamente
-     */
-    
-
     return (
         <div className="login-container">
             <h2>Iniciar Sesión</h2>
@@ -66,8 +61,6 @@ const Login = () => {
                 </div>
                 <button className='login-button' type="submit">Ingresar</button>
             </form>
-o
-            {/* Google Login Flotante */}
             <LoginFloating />
         </div>
     );

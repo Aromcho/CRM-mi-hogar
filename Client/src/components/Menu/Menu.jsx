@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav, Button, Row, Col, Form } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { PATHS } from "../../../config/index.js";
-import './Menu.css';
+import { FaSearch } from "react-icons/fa";
+import { FiltersContext } from "../../context/FiltersContext";
+import { IoMdSettings } from "react-icons/io";
+import { RxAvatar } from "react-icons/rx";
+import { IoIosNotifications } from "react-icons/io";
+import "./Menu.css";
 
-/* Icons */
-import {
-  TelIcon,
-  BelgaIsoIcon,
-  SearchIcon,
-  EmprendimientosIcon,
-} from "../Icons/Icons.jsx";
 
 export const Menu = () => {
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
+  const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
+
+  
+  const { filters, updateFilters } = useContext(FiltersContext);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -27,68 +27,71 @@ export const Menu = () => {
       }
     }
   }, [location]);
+  const handleSearchChange = async (e) => {
+    const query = e.target.value;
+    updateFilters({ searchQuery: query });
+
+    if (query.length > 2) {
+      try {
+        const response = await axios.get("/api/property/autocomplete", {
+          params: { query },
+        });
+        setAutocompleteSuggestions(response.data);
+      } catch (error) {
+        console.error("Error en el autocompletado:", error);
+      }
+    } else {
+      setAutocompleteSuggestions([]);
+    }
+  };
 
   return (
-    <Navbar expand="lg"       bg="white" 
-    className="menu-container">
+    <Navbar expand="lg" bg="white" fixed="top" className="menu-container">
       <div className="nav-flex-container">
         <Navbar.Brand as={Link} to="/">
           <img
             className="logo-img"
             src="/images/logo-mi-hogar.png"
-            alt="Belga inmobiliaria"
+            alt="mi hogar"
           />
         </Navbar.Brand>
-
-       
-
-        {/* Botón hamburguesa */}
-        <div
-          className={`burger-button ${showMenu ? "active" : ""}`}
-          onClick={() => setShowMenu(!showMenu)}
-        >
-          <div className="icon-wrapper">
-            <div className={`burger-cross-custom ${showMenu ? "cross" : "burger"}`}>
-              <div className="line" />
-              <div className="line" />
-              <div className="line" />
+        <div className="input-nav-icon-wrapper">
+          <FaSearch className="input-icon-placeholder" />
+          <Form.Control
+            type="text"
+            className="input-search input-with-icon"
+            value={filters.searchQuery}
+            placeholder="Buscar..."
+            onChange={handleSearchChange}
+          />
+          {autocompleteSuggestions.length > 0 && (
+            <div className="autocomplete-suggestions">
+              <ul>
+                {autocompleteSuggestions.map((suggestion) => (
+                  <li
+                    key={suggestion.value}
+                    onClick={() => handleSuggestionSelect(suggestion)}
+                  >
+                    {suggestion.value}{" "}
+                    {suggestion.secundvalue && ` - ${suggestion.secundvalue}`}
+                  </li>
+                ))}
+              </ul>
             </div>
+          )}
+        </div>
+
+        <div className="menu-config">
+          <div className="action-button">
+            <IoMdSettings />
+          </div>
+          <div className="action-button">
+            <RxAvatar />{" "}
+          </div>
+          <div className="action-button">
+            <IoIosNotifications />
           </div>
         </div>
-      </div>
-
-      {/* Menú desplegable */}
-      <div className={`burger-menu ${showMenu ? "active" : ""}`}>
-        <ul className="burger-menu-list">
-          <li className="burger-menu-item">
-            <Link to={PATHS.EMPRENDIMIENTOS} className="burger--menu-link">
-              <EmprendimientosIcon />
-              <span className="link-text">Emprendimientos</span>
-            </Link>
-          </li>
-          <li className="burger-menu-item">
-            <Link to="/favorites" className="burger--menu-link">
-              <SearchIcon />
-              <span className="link-text">Favoritas</span>
-            </Link>
-          </li>
-          <li
-            className="burger-menu-item"
-            onClick={() => {
-              setShowMenu(false);
-              if (location.pathname === "/") {
-                document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" });
-              } else {
-                navigate("/", { state: { scrollTo: "contact-section" } });
-              }
-            }}
-          >
-            <Link className="burger--menu-link">
-              <TelIcon />
-              <span className="link-text">Contáctanos</span>
-            </Link>
-          </li>
-        </ul>
       </div>
     </Navbar>
   );

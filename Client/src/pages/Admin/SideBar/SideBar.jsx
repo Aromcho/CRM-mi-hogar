@@ -73,7 +73,7 @@ const SideBar = () => {
   };
 
   return (
-    <Box className="d-flex">
+    <Box className="d-flex mt-5">
       <Box className="sidebar-container" sx={{ bgcolor: '#f5f5f5', borderRight: 1, borderColor: 'divider' }}>
         <div className="user-section text-center p-4">
           <Avatar alt={name} src="/static/images/avatar/1.jpg" className="mx-auto" />
@@ -102,18 +102,18 @@ const SideBar = () => {
           }}
         >
           
-          <Tab label={<span className="tab-text"><i className="bi bi-journal-text"></i> Blog de noticias</span>} {...a11yProps(0)} />
+          <Tab label={<span className="tab-text"><i className="bi bi-journal-text"></i>  Propiedades</span>} {...a11yProps(0)} />
           <Tab label={<span className="tab-text"><i className="bi bi-people"></i> Usuarios</span>} {...a11yProps(1)} />
           <Tab label={<span className="tab-text"><i className="bi bi-send"></i> Envíos de mails</span>} {...a11yProps(2)} />
-          <Tab label={<span className="tab-text"><i className="bi bi-file-earmark-text"></i> Propiedades</span>} {...a11yProps(3)} />
-          <Tab label={<span className="tab-text"><i className="bi bi-file-earmark-text"></i> Portales</span>} {...a11yProps(4)} />
+          <Tab label={<span className="tab-text"><i className="bi bi-file-earmark-text"></i>Portales</span>} {...a11yProps(3)} />
+          <Tab label={<span className="tab-text"><i className="bi bi-file-earmark-text"></i> </span>} {...a11yProps(4)} />
 
         </Tabs>
       </Box>
 
       <Box sx={{ flexGrow: 1 }}>
         <TabPanel value={value} index={0}>
-          <NavBar />
+          <ItemListContainer />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <UserManagement />
@@ -122,10 +122,10 @@ const SideBar = () => {
           <Typography variant="h6">Contenido de Envíos de mails</Typography>
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <ItemListContainer />
+        <PropertyList />
         </TabPanel>
         <TabPanel value={value} index={4}>
-        <PropertyList />
+        
         </TabPanel>
       </Box>
     </Box>
