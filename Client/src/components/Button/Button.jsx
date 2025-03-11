@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Importa Link desde react-router-dom
 import { classes } from "../../helpers/index.js"; // Ajusta la ruta según tu estructura de carpetas
-import { MailIcon } from "../Icons/Icons"; // Ajusta la ruta según tu estructura de carpetas
 import "./Button.css"; // Archivo CSS para los estilos
 
 const Button = ({

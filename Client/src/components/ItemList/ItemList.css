@@ -53,7 +53,7 @@
 
 @media (min-width: 1024px) {
   .item-list {
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 1fr ;
   }
 }
 /* Estilos móviles para la paginación */

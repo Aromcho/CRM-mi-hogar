@@ -1,69 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import LoginFloating from '../../components/LoginFloating/LoginFloating';
-import './Login.css';
+import React, { useState, useContext, useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";  
+import LoginFloating from "../../components/LoginFloating/LoginFloating";
+import "./Login.css";
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+  const { login, loading, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
-    /**
-     * 🟢 Iniciar sesión con email y contraseña
-     */
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  // ✅ Redirigir si el usuario ya está autenticado
+  useEffect(() => {
+    if (user) {
+      navigate("/"); 
+    }
+  }, [user, navigate]);
 
-        try {
-            const response = await fetch('/api/sessions/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-                credentials: 'include' // Importante: para incluir cookies con la solicitud
-            });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await login(email, password);
+      navigate("/"); 
+    } catch (err) {
+      setError("Error al iniciar sesión. Verifica tus credenciales.");
+    }
+  };
 
-            const data = await response.json();
-            if (data.user?.role === 'ADMIN') {
-                navigate('/admin', { state: { user: data.user } });
-            } else {
-                navigate('/', { state: { user: data.user } });
-            }
-        } catch (error) {
-            console.error('Error during login:', error);
-        }
-    };
-
-    return (
-        <div className="login-container">
-            <h2>Iniciar Sesión</h2>
-            <form className='formulario' onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder='Email:'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder='Contraseña:'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button className='login-button' type="submit">Ingresar</button>
-            </form>
-            <LoginFloating />
-        </div>
-    );
+  return user ? null : ( // 🔥 Si el usuario está autenticado, no mostrar el formulario
+    <div className="login-container">
+      <div className="login-card">
+        <img className="logo-login" src="./images/logo-mi-hogar.png" alt="Mi Hogar" />
+        <h2>Bienvenido de vuelta</h2>
+        {error && <div className="error-message">{error}</div>}
+        <form className="formulario" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button className="login-button" type="submit" disabled={loading}>
+            {loading ? "Cargando..." : "Iniciar Sesión"}
+          </button>
+        </form>
+        <LoginFloating />
+      </div>
+    </div>
+  );
 };
 
 export default Login;

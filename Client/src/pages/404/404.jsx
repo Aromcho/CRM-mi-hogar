@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button.jsx";
-import { ArrowBackIcon } from "../../components/Icons/Icons.jsx";
 //import Layout from "../../components/Layout/Layout.jsx";
 import "./404.css"; // Importar el CSS de forma clásica
 

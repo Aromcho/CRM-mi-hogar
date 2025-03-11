@@ -1,0 +1,258 @@
+/* Dashboard.css */
+
+/* Container principal: fondo y padding */
+.dashboard-container {
+  margin-top: 50px;
+  padding: 20px;
+  background: #f8f9fa;
+  min-height: 100vh; /* Opcional: forzar que ocupe toda la pantalla */
+  font-family: 'Roboto', sans-serif; /* Elige tu fuente preferida */
+}
+
+/* Page header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.page-header .page-title-icon {
+  margin-right: 10px;
+  background: #6495ED;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+}
+.page-header .breadcrumb {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cards */
+.card {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px; /* esquinas más redondeadas */
+  box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+/* Efecto hover para que se vea “flotando” */
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Top 3 cards con gradientes y estilos */
+.card-bg-danger {
+  background: linear-gradient(135deg, #ff5f6d 0%, #ffc371 100%);
+  color: #fff;
+}
+.card-bg-info {
+  background: linear-gradient(135deg, #36d7e8 0%, #b194fa 100%);
+  color: #fff;
+}
+.card-bg-success {
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+  color: #fff;
+}
+.font-weight-normal {
+  font-weight: 400;
+}
+.float-right {
+  float: right;
+}
+
+/* Chart containers */
+.chart-container {
+  position: relative;
+  height: 100%;
+}
+.bar-chart-wrapper,
+.donut-chart-wrapper {
+  width: 100%;
+  height: 250px; /* Ajusta a tu preferencia */
+  position: relative;
+}
+
+/* Tablas */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden; /* para redondear bordes de la tabla */
+  font-size: 0.9rem; /* Ajusta a tu preferencia */
+}
+.custom-table thead {
+  background-color: #e9ecef;
+}
+.custom-table th,
+.custom-table td {
+  padding: 12px 15px;
+  border: 1px solid #dee2e6;
+}
+.custom-table th {
+  font-weight: 500; /* un poco más grueso */
+}
+.badge {
+  padding: 5px 10px;
+  border-radius: 20px; /* estilo “pill” */
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  display: inline-block;
+}
+.badge-success {
+  background-color: #28a745;
+}
+.badge-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+.badge-info {
+  background-color: #17a2b8;
+}
+.badge-danger {
+  background-color: #dc3545;
+}
+
+/* Progreso con gradientes sutiles */
+.custom-progress {
+  height: 8px;
+  border-radius: 4px;
+  margin-top: 5px;
+  background-color: #e9ecef; /* pista */
+}
+.gradient-success {
+  background: linear-gradient(90deg, #a1c4fd, #c2e9fb);
+}
+.gradient-danger {
+  background: linear-gradient(90deg, #ff5f6d, #ffc371);
+}
+.gradient-warning {
+  background: linear-gradient(90deg, #f6d365, #fda085);
+}
+.gradient-primary {
+  background: linear-gradient(90deg, #5b86e5, #36d7e8);
+}
+
+/* Todo list */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.todo-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e9ecef;
+  transition: background-color 0.2s ease;
+}
+.todo-list li:last-child {
+  border-bottom: none;
+}
+.todo-list li:hover {
+  background-color: #fafafa; /* un sutil hover */
+}
+.todo-list li.completed .form-check-label {
+  text-decoration: line-through;
+  color: #aaa;
+}
+.form-check {
+  display: flex;
+  align-items: center;
+}
+.form-check-label {
+  margin-left: 5px;
+}
+.remove-icon {
+  cursor: pointer;
+  color: #dc3545;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: color 0.2s ease;
+}
+.remove-icon:hover {
+  color: #a71d2a; /* un tono más oscuro */
+}
+
+/* Utility classes */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -10px;
+  margin-left: -10px;
+}
+.col-md-4,
+.col-md-5,
+.col-md-7,
+.col-lg-5,
+.col-lg-7,
+.col-xl-5,
+.col-xl-7,
+.col-12 {
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+.grid-margin {
+  margin-bottom: 20px;
+}
+.stretch-card {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Leyenda para los donuts/barras si la usas */
+.legend-vertical ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.legend-vertical li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+.legend-dots {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+/* Extra: Animate titles on load */
+.card-title {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 5px;
+}
+.card-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: #6495ed;
+  animation: lineReveal 1.2s ease forwards;
+}
+@keyframes lineReveal {
+  to {
+    left: 0;
+  }
+}

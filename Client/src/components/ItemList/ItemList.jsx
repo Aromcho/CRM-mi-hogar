@@ -5,10 +5,11 @@ import Item from '../Item/Item.jsx';
 import Filters from '../Filters/Filters.jsx';
 import { FiltersContext } from '../../context/FiltersContext';
 import Skeleton from '@mui/material/Skeleton'; 
+import UtilsListBar from '../UtilsListBar/UtilsListBar.jsx';
 import './ItemList.css';
 
-const ItemList = () => {
-  const { properties, loading, updateFilters, totalProperties, limit, offset, setOffset } = useContext(FiltersContext);
+const ItemList = ({properties}) => {
+  const { loading, updateFilters, totalProperties, limit, offset, setOffset } = useContext(FiltersContext);
 
   const totalPages = Math.ceil(totalProperties / limit);
   const [currentPage, setCurrentPage] = useState(1);
@@ -78,6 +79,7 @@ const ItemList = () => {
   return (
     <>
       <Filters className="p-0 mb-1 pt-5 mt-5" onSubmit={updateFilters} />
+      <UtilsListBar />
       <Container className='px-0'>
         <div className="item-list">
           {loading ? (

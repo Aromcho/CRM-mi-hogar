@@ -1,83 +1,77 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
-// Hook personalizado para usar el contexto
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
-
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // Estado del usuario
-  const [loading, setLoading] = useState(true); // Indicador de carga
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  /**
-   * Verificar Autenticación Inicial (JWT vía cookies)
-   */
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await axios.get('/api/sessions/online', { withCredentials: true });
-        setUser(response.data.user);
-      } catch (error) {
+  // 🔥 Obtener usuario desde la API
+  const fetchUser = async () => {
+    try {
+      const response = await fetch("http://localhost:4003/auth/me", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        const userData = await response.json();
+        setUser(userData);
+      } else {
         setUser(null);
-      } finally {
-        setLoading(false);
       }
-    };
+    } catch (error) {
+      console.error("Error al obtener el usuario:", error);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    checkAuth();
+  useEffect(() => {
+    fetchUser(); // 🔥 Obtener usuario al cargar la app
   }, []);
 
-  /**
-   * Inicio de sesión (Email y contraseña)
-   */
   const login = async (email, password) => {
+    setLoading(true);
     try {
-      const response = await axios.post('/api/sessions/login', { email, password }, { withCredentials: true });
-      setUser(response.data.user);
-      return response.data;
+      const response = await fetch("http://localhost:4003/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        await fetchUser(); // 🔥 Actualizar usuario después de iniciar sesión
+      } else {
+        throw new Error("Error al iniciar sesión");
+      }
     } catch (error) {
-      throw new Error('Login failed');
+      console.error("Error en el login:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
-  /**
-   * Cerrar sesión
-   */
   const logout = async () => {
+    setLoading(true);
     try {
-      await axios.delete('/api/sessions/logout', { withCredentials: true });
+      await fetch("http://localhost:4003/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
       setUser(null);
     } catch (error) {
-      throw new Error('Logout failed');
+      console.error("Error al cerrar sesión:", error);
+    } finally {
+      setLoading(false);
     }
-  };
-
-  /**
-   * Verificar si es Administrador
-   */
-  const isAdmin = () => user && user.role === 'ADMIN';
-
-  /**
-   * Inicio de sesión con Google
-   */
-  const loginWithGoogle = () => {
-    window.location.href = 'http://localhost:5173/api/sessions/google/web';
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        login,
-        logout,
-        isAdmin,
-        loginWithGoogle,
-      }}
-    >
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

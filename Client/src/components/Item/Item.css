@@ -1,12 +1,13 @@
 /* 🛠️ General */
 .card-item {
-  min-width: 200px;
+  display: flex; /* 🔥 Organiza la imagen a la izquierda */
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   margin: 5px;
   transition: transform 0.3s ease;
+  width: 100%;
 }
 
 .card-item:hover {
@@ -16,16 +17,20 @@
 .link-full {
   text-decoration: none;
   color: inherit;
+  display: flex;
+  width: 100%;
 }
 
-/* 🖼️ Imagen y Favorito */
+/* 🖼️ Imagen a la izquierda */
 .image-container {
+  width: 20%; /* 🔥 La imagen ocupa el 40% */
+  height: 100%;
   position: relative;
 }
 
 .card-image {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -48,9 +53,13 @@
   color: red;
 }
 
-/* 📝 Contenido Principal */
+/* 📝 Contenido */
 .card-content {
+  flex: 1; /* 🔥 Ocupa el espacio restante */
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .card-header {
@@ -96,5 +105,17 @@
 }
 
 /* ✅ RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .card-item {
+    flex-direction: column; /* 🔥 En pantallas pequeñas, vuelve a la disposición en columna */
+  }
 
-/* 🌐 Versión Escritorio */
+  .image-container {
+    width: 100%;
+    height: 200px; /* 🔥 Ajusta el alto para móviles */
+  }
+
+  .card-content {
+    padding: 10px;
+  }
+}

@@ -1,0 +1,21 @@
+/* Contenedor principal */
+.app-container {
+    display: flex;
+    height: 100vh; /* Ocupar toda la altura de la pantalla */
+    overflow: hidden;
+  }
+  
+  /* Sidebar a la izquierda */
+  .sidebar {
+    width: 240px; /* Ajusta el ancho del sidebar según tu diseño */
+    height: 100vh; /* Para que ocupe toda la altura */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra lateral */
+  }
+  
+  /* Contenedor del contenido (se expande) */
+  .content-container {
+    flex-grow: 1; /* Hace que el contenido ocupe el resto del espacio disponible */
+    padding: 0; /* Espaciado interno */
+    overflow-y: auto; /* Habilita el scroll si el contenido es largo */
+  }
+  

@@ -6,37 +6,7 @@ import "./Item.css";
 const Item = ({ property }) => {
   const [isFavorited, setIsFavorited] = useState(false);
 
-  const toggleFavorite = async () => {
-    try {
-      const product = {
-        id: property.id,
-        name: property.publication_title || property.address || 'Producto sin nombre',
-        price: property.operations[0]?.prices[0]?.price || 0,
-        photos: property.photos?.[0]?.image || 'default-image.jpg'
-      };
   
-      if (!isFavorited) {
-        const response = await fetch('/api/cookies/set-product', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ product }),
-          credentials: 'include',
-        });
-        if (!response.ok) throw new Error('Error al guardar el producto en la cookie');
-      } else {
-        const response = await fetch(`/api/cookies/delete-product/${product.id}`, {
-          method: 'DELETE',
-          credentials: 'include',
-        });
-        if (!response.ok) throw new Error('Error al eliminar el producto de la cookie');
-      }
-      setIsFavorited(!isFavorited);
-    } catch (error) {
-      console.error('Error al manejar la cookie del producto:', error);
-    }
-  };
 
   useEffect(() => {
     const checkIfFavorited = async () => {

@@ -12,7 +12,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './ItemDetail.css';
 import Print from '../Print/Print';
-import { HeartIcon, MailIcon, PrintIcon, WhatsappIcon } from '../Icons/Icons';
 import { Skeleton, Dialog, DialogContent, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import Contenido from './Contenido/Contenido';

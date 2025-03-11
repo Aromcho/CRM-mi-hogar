@@ -1,52 +1,85 @@
+/* Login.css */
 .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg,var(--secondary-color), var(--primary-color) );
+}
+
+.login-card {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 1s ease;
+}
+.logo-login {
+  width: 120px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+.login-card h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(133, 89, 168, 0.5);
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: var(--secondary-color);
+}
+
+.error-message {
+  margin-bottom: 15px;
+  color: #ff4e50;
+  font-size: 14px;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .login-card {
+    padding: 30px 20px;
   }
-  .formulario {
-    width: 30%;
-  }
-  .login-container h2 {
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-    width: 100%;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid black;
-    border-radius: 0;
-  }
-  
-  .login-button {
-    width: 100%;
-    padding: 10px;
-    color: white;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    border: 1px solid black;
-    font-weight: bold;
-    background-color: var(--secondary-color);
-  }
-  
-  .login-button:hover {
-    background-color: transparent;
-    color: black;
-    border: 1px solid black;
-  }
-  
+}

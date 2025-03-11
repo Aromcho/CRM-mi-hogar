@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { User } from './user.schema';
+import { User } from './schemas/user.schema';
+import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -18,8 +19,12 @@ export class UserService {
         return this.userModel.find().exec();
     }
 
-    async findOne(id: string | number) {
-        return this.userModel.findOne({ id: Number(id) }).populate('branchId', 'name logo address').exec();
+    async findOne(id: string) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            throw new Error('ID inválido');
+        }
+    
+        return this.userModel.findById(id).populate('branchId', 'name logo address').exec();
     }
     
     async findOneByEmail(email: string) {

@@ -36,10 +36,17 @@ export class AuthService {
       throw new UnauthorizedException('Error al validar el usuario');
     }
   }
+
   async login(user: any) {
-    const payload = { id: user.id, email: user.email, role: user.role };
-    return {
-      access_token: this.jwtService.sign(payload),
-    };
+    const payload = { id: user._id, email: user.email, role: user.role };
+    return { access_token: this.jwtService.sign(payload) };
+  }
+
+  async verifyToken(token: string) {
+    try {
+      return this.jwtService.verify(token);
+    } catch (error) {
+      throw new UnauthorizedException('Token inválido');
+    }
   }
 }

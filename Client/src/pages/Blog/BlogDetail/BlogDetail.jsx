@@ -4,16 +4,8 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async'; // Importa Helmet
 import Register from "../../Register/Register.jsx";
 import { Skeleton, Box, Typography, Button } from '@mui/material';
-import { FaWhatsapp } from 'react-icons/fa'; // Importa el icono de WhatsApp
 import { PATHS, SOCIAL } from "../../../../config/index.js"; // Importa las rutas y redes sociales
-import {
-  FacebookCircleIcon,
-  InstaCircleIcon,
-  LinkedinCircleIcon,
-  MessengerCircleIcon,
-  YoutubeCircleIcon,
-  WhatsappIcon,
-} from "../../../components/Icons/Icons.jsx"; // Iconos Importados
+
 import './BlogDetail.css';
 
 const BlogDetail = () => {
